@@ -1,3 +1,3 @@
 ## BITRIX
-- **class-translator.php**
+- **class-translator.php**<br>
 Класс для мультиязычности проекта на битриксе
