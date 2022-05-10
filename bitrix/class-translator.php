@@ -1,6 +1,6 @@
 <?php
 
-namespace CCI;
+namespace ITProfit;
 
 use CIBlockElement;
 use CIBlockSection;
