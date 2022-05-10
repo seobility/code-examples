@@ -1,0 +1,467 @@
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+
+$rows: 32;
+$cols: 15;
+$has-animations: ();
+
+// настройки по умолчанию
+$cells: (
+        "col": 6,
+        "from": 6,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -1030.23%, #0700ff 252.29%),
+    ),
+    (
+        "col": 7,
+        "from": 4,
+        "count": 4,
+        "color": linear-gradient(270deg, #dc0a3c -923.17%, #0700ff 359.35%),
+    ),
+    (
+        "col": 8,
+        "from": 1,
+        "count": 6,
+        "color": linear-gradient(270deg, #dc0a3c -815.1%, #0700ff 467.42%),
+    ),
+    (
+        "col": 8,
+        "from": 1,
+        "count": 6,
+        "color": linear-gradient(270deg, #dc0a3c -815.1%, #0700ff 467.42%),
+    ),
+    (
+        "col": 8,
+        "from": 1,
+        "count": 6,
+        "color": linear-gradient(270deg, #dc0a3c -815.1%, #0700ff 467.42%),
+    ),
+    (
+        "col": 9,
+        "from": 1,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -707.1%, #0700ff 575.42%),
+    ),
+    (
+        "col": 10,
+        "from": 2,
+        "count": 6,
+        "color": linear-gradient(270deg, #dc0a3c -491.02%, #0700ff 791.5%),
+    ),
+    (
+        "col": 11,
+        "from": 1,
+        "count": 13,
+        "color": linear-gradient(270deg, #dc0a3c -382.95%, #0700ff 899.57%),
+    ),
+    (
+        "col": 12,
+        "from": 2,
+        "count": 9,
+        "color": linear-gradient(270deg, #dc0a3c -274.95%, #0700ff 1007.57%),
+    ),
+    (
+        "col": 13,
+        "from": 3,
+        "count": 10,
+        "color": linear-gradient(270deg, #dc0a3c -166.88%, #0700ff 1115.64%),
+    ),
+    (
+        "col": 14,
+        "from": 5,
+        "count": 13,
+        "color": linear-gradient(270deg, #dc0a3c -58.95%, #0700ff 1223.57%),
+    ),
+    (
+        "col": 15,
+        "from": 7,
+        "count": 16,
+        "color": linear-gradient(270deg, #dc0a3c 49.12%, #0700ff 1331.64%),
+    );
+
+// настройки первого слайда
+$cells-1: (
+        "col": 8,
+        "from": 2,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -712.06%, #0700ff 590.94%),
+    ),
+    (
+        "col": 8,
+        "from": 29,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -712.06%, #0700ff 590.94%),
+    ),
+    (
+        "col": 9,
+        "from": 3,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -603.98%, #0700ff 699.01%),
+    ),
+    (
+        "col": 9,
+        "from": 27,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -603.98%, #0700ff 699.01%),
+    ),
+    (
+        "col": 10,
+        "from": 5,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -495.98%, #0700ff 807.01%),
+    ),
+    (
+        "col": 10,
+        "from": 25,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -495.98%, #0700ff 807.01%),
+    ),
+    (
+        "col": 11,
+        "from": 7,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -387.91%, #0700ff 915.08%),
+    ),
+    (
+        "col": 11,
+        "from": 23,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -387.91%, #0700ff 915.08%),
+    ),
+    (
+        "col": 12,
+        "from": 9,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -279.91%, #0700ff 1023.08%),
+    ),
+    (
+        "col": 12,
+        "from": 21,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -279.91%, #0700ff 1023.08%),
+    ),
+    (
+        "col": 13,
+        "from": 11,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -171.84%, #0700ff 1131.15%),
+    ),
+    (
+        "col": 13,
+        "from": 19,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -171.84%, #0700ff 1131.15%),
+    ),
+    (
+        "col": 14,
+        "from": 13,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -63.91%, #0700ff 1239.08%),
+    ),
+    (
+        "col": 14,
+        "from": 17,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -63.91%, #0700ff 1239.08%),
+    ),
+    (
+        "col": 15,
+        "from": 15,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c 44.16%, #0700ff 1347.15%),
+    );
+
+// настройки второго слайда
+$cells-2: (
+        "col": 2,
+        "from": 5,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -1258.05%, #0700ff 63.83%),
+    ),
+    (
+        "col": 2,
+        "from": 8,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -1258.05%, #0700ff 63.83%),
+    ),
+    (
+        "col": 5,
+        "from": 6,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -1041.04%, #0700ff 280.85%),
+    ),
+    (
+        "col": 6,
+        "from": 5,
+        "count": 4,
+        "color": linear-gradient(270deg, #dc0a3c -933.98%, #0700ff 387.91%),
+    ),
+    (
+        "col": 7,
+        "from": 6,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -825.91%, #0700ff 495.98%),
+    ),
+    (
+        "col": 8,
+        "from": 7,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -717.91%, #0700ff 603.98%),
+    ),
+    (
+        "col": 8,
+        "from": 19,
+        "count": 5,
+        "color": linear-gradient(270deg, #dc0a3c -717.91%, #0700ff 603.98%),
+    ),
+    (
+        "col": 9,
+        "from": 7,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -609.84%, #0700ff 712.05%),
+    ),
+    (
+        "col": 9,
+        "from": 17,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -609.84%, #0700ff 712.05%),
+    ),
+    (
+        "col": 9,
+        "from": 19,
+        "count": 3,
+        "color": linear-gradient(270deg, #dc0a3c -609.84%, #0700ff 712.05%),
+    ),
+    (
+        "col": 10,
+        "from": 8,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -501.83%, #0700ff 820.05%),
+    ),
+    (
+        "col": 10,
+        "from": 15,
+        "count": 5,
+        "color": linear-gradient(270deg, #dc0a3c -501.83%, #0700ff 820.05%),
+    ),
+    (
+        "col": 11,
+        "from": 16,
+        "count": 6,
+        "color": linear-gradient(270deg, #dc0a3c -393.76%, #0700ff 928.13%),
+    ),
+    (
+        "col": 12,
+        "from": 14,
+        "count": 5,
+        "color": linear-gradient(270deg, #dc0a3c -285.76%, #0700ff 1036.12%),
+    ),
+    (
+        "col": 12,
+        "from": 21,
+        "count": 2,
+        "color": linear-gradient(270deg, #dc0a3c -285.76%, #0700ff 1036.12%),
+    ),
+    (
+        "col": 13,
+        "from": 15,
+        "count": 5,
+        "color": linear-gradient(270deg, #dc0a3c -177.69%, #0700ff 1144.2%),
+    ),
+    (
+        "col": 13,
+        "from": 25,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -177.69%, #0700ff 1144.2%),
+    ),
+    (
+        "col": 14,
+        "from": 17,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -69.76%, #0700ff 1252.13%),
+    ),
+    (
+        "col": 14,
+        "from": 26,
+        "count": 1,
+        "color": linear-gradient(270deg, #dc0a3c -69.76%, #0700ff 1252.13%),
+    ),
+    (
+        "col": 15,
+        "from": 21,
+        "count": 3,
+        "color": linear-gradient(270deg, #dc0a3c 38.31%, #0700ff 1360.2%),
+    );
+
+// рассчитывает nth-child по координатам
+@function calc-nth($x, $y) {
+    $nth: (($rows - $y) * $cols) - ($cols - $x);
+    @return $nth;
+}
+
+// анимирует opacity ячейки
+// $from начальное сотояние
+// $to конечное состояние
+@mixin cell-animation($from, $to, $x, $y) {
+    $iterations: 5;
+    $op-min: 0.03;
+    $op-max: 0.97;
+
+    $nth: calc-nth($x, $y);
+    $anim-name: "cell-#{$from}-#{$to}-#{$x}-#{$y}";
+
+    @if (map.has-key($has-animations, $anim-name) == false) {
+        $has-animations: map.merge(
+            $has-animations,
+            (
+                $anim-name: 1,
+            )
+        ) !global;
+
+        span:nth-child(#{$nth}):after {
+            @keyframes #{$anim-name} {
+                #{"0%"} {
+                    opacity: $from;
+                }
+
+                $max-key: math.floor(math.div(100, $iterations));
+                $prev-key: 0;
+
+                $op-max: $op-max * 100;
+                $op-min: $op-min * 100;
+
+                @for $i from 1 to $iterations {
+                    $prev-key: $prev-key + random($max-key);
+                    $opacity: math.div((random($op-max - $op-min) + $op-min), 100);
+
+                    #{"#{$prev-key}%"} {
+                        opacity: #{$opacity};
+                    }
+                }
+
+                #{"100%"} {
+                    opacity: $to;
+                }
+            }
+
+            animation-name: #{$anim-name};
+        }
+    }
+}
+
+// закрашивает ячейку по координатам
+// начало отсчета левый нижний угол
+// $x координаты по x
+// $y координаты по y
+// $color цвет
+@mixin color-cell($x, $y, $color: rgba(255, 255, 255, 0.01)) {
+    $nth: calc-nth($x, $y);
+    span:nth-child(#{$nth}):after {
+        background: $color;
+    }
+}
+
+// закрашивает ячейки в колонке
+// $x координаты x
+// $from координта первого элемента (включительно)
+// $to кол-во элементов для закрашивания (последний включительно)
+// $color цвет
+@mixin color-column($x, $from, $to, $color) {
+    $through: $from + $to - 1;
+    @for $i from $from through $through {
+        @include color-cell($x, $i, $color);
+    }
+}
+
+// закрашивает массив колонок
+@mixin color-columns($cells) {
+    @each $info in $cells {
+        $col: map-get($info, "col");
+        $from: map-get($info, "from");
+        $count: map-get($info, "count");
+        $color: map-get($info, "color");
+        @include color-column($col, $from, $count, $color);
+    }
+}
+
+// устанавливает высоту всем линиям в колонке
+// $col координата x
+// $height высота эоемента
+@mixin height-column($col, $height) {
+    $nth: $cols - ($cols - $col);
+    @for $i from 1 through $rows {
+        span:nth-child(#{$nth}) {
+            height: $height;
+        }
+        $nth: $nth + $cols;
+    }
+}
+
+// сбрасывает стили всех ячеек на дефолтные
+@mixin reset-cells() {
+    span:nth-child(n) {
+        background: rgba(255, 255, 255, 0.1);
+        &:after {
+            background: transparent;
+        }
+    }
+}
+
+// выполняет анимацию скрывания ячейки
+@mixin hide-cell($x, $y) {
+    @include cell-animation(1, 0, $x, $y);
+}
+
+// выполняет анимацию скрывания на колонке
+@mixin hide-column($x, $from, $to) {
+    $through: $from + $to - 1;
+    @for $i from $from through $through {
+        @include hide-cell($x, $i);
+    }
+}
+
+// выполняет анимацию скрывания на массиве колонок
+@mixin hide-columns($cells) {
+    @each $info in $cells {
+        $col: map-get($info, "col");
+        $from: map-get($info, "from");
+        $count: map-get($info, "count");
+        @include hide-column($col, $from, $count);
+    }
+}
+
+// выполняет анимацию появления ячейки
+@mixin show-cell($x, $y) {
+    @include cell-animation(0, 1, $x, $y);
+}
+
+// выполняет анимацию появления на колонке
+@mixin show-column($x, $from, $to) {
+    $through: $from + $to - 1;
+    @for $i from $from through $through {
+        @include show-cell($x, $i);
+    }
+}
+
+// выполняет анимацию появления на массиве колонок
+@mixin show-columns($cells) {
+    @each $info in $cells {
+        $col: map-get($info, "col");
+        $from: map-get($info, "from");
+        $count: map-get($info, "count");
+        @include show-column($col, $from, $count);
+    }
+}
+
+@mixin hide-columns-all($args...) {
+    @each $cells in $args {
+        @include hide-columns($cells);
+    }
+}
+
+@mixin show-columns-all($args...) {
+    @each $cells in $args {
+        @include show-columns($cells);
+    }
+}
